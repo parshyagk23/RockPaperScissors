@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Sicssors</title>
+  <link rel="stylesheet" href="index.css">
+  
+
+  
+</head>
+
+<body>
+  <section class="title-score">
+    <div class="all">
+    <div class="title">
+      <h2>ROCK</h2>
+      <h2>PAPER</h2>
+      <h2>SCISSORS</h2>
+    </div>
+    <div class="score">
+      <div class="com-score">
+        <h2>COMPUTER SCORE</h2>
+        <h1>0</h1>
+      </div>
+
+      <div class="user-score">
+        <h2>&nbsp;YOUR &nbsp; SCORE</h2>
+        <h1>0</h1>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section class="box2">
+    <div href="" class="choice-btn user2" data-num="Paper">
+      <div class="Circle2" data-num="win">
+        <h2>YOUR PCIKUP</h2>
+        <img id="Circle2-img" height="90px"  alt="" />
+      </div>
+    </div>  
+    <div class=" text3 text">
+      <h1>TIE UP</h1>
+      <button onclick="window.location.href='index.html' " class="Play_Again">REPLAY</button
+        onclick="window.location.href='index.html'">
+    </div>
+    </div>
+    <div class="choice-btn pc2" data-num="Rock">
+      <h2>PC PICKED</h2>
+      <div class="Circle1">
+              <img id="Circle1-img" height="90px"  />
+            </div>
+      </div>
+    </div>
+    
+  </section>
+
+
+  <section class="Loss-rules">
+    <a class="exit">
+      <h5>X</h5>
+    </a>
+    <div class="rules-details">
+      <h2>Game Rules</h2>
+      <div class="rule">
+        <h5></h5>
+        <p>Rock beats scissors, scissors beat paper, and paper beats rock.</p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          Agree ahead of time whether you’ll count off “rock, paper, scissors,
+          shoot” or just “rock, paper, scissors.”
+        </p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          Use rock, paper, scissors to settle minor decisions or simply play
+          to pass the time
+        </p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          If both players lay down the same hand, each player lays down
+          another hand
+        </p>
+      </div>
+    </div>
+  </section>
+  <div class="btn">
+    <a class="rul">RULES</a>
+
+  </div>
+  <script >
+    const tie_Circle1 = document.querySelector('.Circle1');
+    const tie_Circle2 = document.querySelector('.Circle2');
+    const tie_Circle1img = document.getElementById('Circle1-img')
+    const tie_Circle2img = document.getElementById('Circle2-img')
+
+    const userchoise = localStorage.getItem('UserChoise')
+    const comchoise = localStorage.getItem('ComChoise')
+
+    
+    let userWins = localStorage.getItem('userWins') || 0;
+    let computerWins = localStorage.getItem('computerWins') || 0
+
+
+    let ComInnerText = document.querySelector('.com-score h1')
+    let UserInnerText = document.querySelector('.user-score h1')
+
+    const rulbtn = document.querySelector('.rul');
+    const rules = document.querySelector('.Loss-rules')
+    const exit = document.querySelector('.exit')
+
+
+    if (userchoise === 'Rock' && comchoise === 'Rock') {
+
+      tie_Circle1.style.border = '#0074B6 solid 20px'
+      tie_Circle1img.src = 'img/Rock.png'
+      tie_Circle2.style.border = '#0074B6 solid 20px'
+      tie_Circle2img.src = 'img/Rock.png'
+      
+
+    } else if (userchoise === 'Paper' && comchoise === 'Paper') {
+
+      tie_Circle1.style.border = '#FFA943 solid 20px'
+      tie_Circle1img.src = 'img/Paper.png'
+      tie_Circle2.style.border = '#FFA943 solid 20px'
+      tie_Circle2img.src = 'img/Paper.png'
+
+    } else if (userchoise === 'Scissors' && comchoise === 'Scissors') {
+      
+      tie_Circle2.style.border = '#BD00FF solid 20px'
+      tie_Circle2img.src = 'img/Scissors.png'
+      tie_Circle1img.style.width ='75px'
+      tie_Circle2img.style.width ='75px'
+      tie_Circle1.style.border = '#BD00FF solid 20px'
+      tie_Circle1img.src = 'img/Scissors.png'
+
+
+    }
+    function UpdateWin() {
+      ComInnerText.innerHTML = computerWins
+      UserInnerText.innerHTML = userWins
+    }
+    UpdateWin()
+    rulbtn.addEventListener('click', function () {
+      rules.style.display = "block"
+    })
+    exit.addEventListener('click', function () {
+      rules.style.display = "none"
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link rel="stylesheet" href="index.css">
+ 
+
+</head>
+
+<body>
+
+  <section class="title-score">
+    <div class="all">
+      <div class="title">
+        <h2>ROCK</h2>
+        <h2>PAPER</h2>
+        <h2>SCISSORS</h2>
+      </div>
+      <div class="score">
+        <div class="com-score">
+          <h2>COMPUTER SCORE</h2>
+          <h1>0</h1>
+        </div>
+
+        <div class="user-score">
+          <h2>&nbsp;YOUR &nbsp; SCORE</h2>
+          <h1>0</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="box">
+    <div class="choice-btn user" data-num="Rock">
+      <div class=" r">
+        <div class="rr">
+          <h2>YOUR PICKED</h2>
+          <div class="rrr">
+            <div class="Circle1">
+              <img id="Circle1-img" height="90px"  />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div  class="choice-btn text1" data-num="Scissors">
+      <div class="text " data-num="text">
+        <h1>YOU WIN</h1>
+        <h2>AGAINEST PC</h2>
+        <button onclick="window.location.href='index.html'" class="Play_Again">PLAY AGAIN</button>
+    </div>
+    </div>
+    <div href="" class="choice-btn pc" data-num="Paper">
+      <div class="Circle2" data-num="win">
+        <h2>PC PCIKUP</h2>
+        <img id="Circle2-img" height="90px"alt="" />
+      </div>
+    </div>
+  
+  </section>
+  
+  <section class="Loss-rules">
+    <a class="exit">
+      <h5>X</h5>
+    </a>
+    <div class="rules-details">
+      <h2>Game Rules</h2>
+      <div class="rule">
+        <h5></h5>
+        <p>Rock beats scissors, scissors beat paper, and paper beats rock.</p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          Agree ahead of time whether you’ll count off “rock, paper, scissors,
+          shoot” or just “rock, paper, scissors.”
+        </p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          Use rock, paper, scissors to settle minor decisions or simply play
+          to pass the time
+        </p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          If both players lay down the same hand, each player lays down
+          another hand
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="btn">
+    <a class="rul">RULES</a>
+    <a class="next" href="Hurray.html">NEXT</a>
+  </div>
+  <script>
+    const next = document.querySelector('.next')
+
+    let ComInnerText = document.querySelector('.com-score h1')
+    let UserInnerText = document.querySelector('.user-score h1')
+
+    const win_Circle1 = document.querySelector('.Circle1');
+    const win_Circle2 = document.querySelector('.Circle2');
+    const win_Circle1img = document.getElementById('Circle1-img')
+    const win_Circle2img = document.getElementById('Circle2-img')
+
+    const rulbtn = document.querySelector('.rul');
+    const rules = document.querySelector('.Loss-rules')
+    const exit = document.querySelector('.exit')
+
+    const userchoise = localStorage.getItem('UserChoise')
+    const comchoise = localStorage.getItem('ComChoise')
+
+    let userWins = localStorage.getItem('userWins') || 0;
+    let computerWins = localStorage.getItem('computerWins') || 0;
+
+
+    if (userchoise === 'Rock' && comchoise === 'Scissors') {
+      
+        win_Circle2.style.border = '#BD00FF solid 20px'
+        win_Circle2img.src = 'img/Scissors.png'
+        win_Circle2img.style.width ='75px'
+        win_Circle1.style.border = '#0074B6 solid 20px'
+        win_Circle1img.src = 'img/Rock.png'
+        next.style.display = "block"
+       
+    } else if (userchoise === 'Paper' && comchoise === 'Rock') {
+    
+        win_Circle2.style.border = '#0074B6 solid 20px'
+        win_Circle2img.src = 'img/Rock.png'
+        win_Circle1.style.border = '#FFA943 solid 20px'
+        win_Circle1img.src = 'img/Paper.png'
+        next.style.display = "block"
+      
+    } else if (userchoise === 'Scissors' && comchoise === 'Paper') {
+     
+        win_Circle1.style.border = '#BD00FF solid 20px'
+        win_Circle1img.src = 'img/Scissors.png'
+        win_Circle1img.style.width='75px'
+        win_Circle2.style.border = '#FFA943 solid 20px'
+        win_Circle2img.src = 'img/Paper.png'
+        next.style.display = "block"
+      
+    }
+    userWins++;
+    localStorage.setItem('userWins', userWins);
+    function UpdateWin() {
+      ComInnerText.innerHTML = computerWins
+      UserInnerText.innerHTML = userWins
+    }
+    UpdateWin()
+
+    rulbtn.addEventListener('click', function () {
+      rules.style.display = "block"
+    })
+    exit.addEventListener('click', function () {
+      rules.style.display = "none"
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="index.css" />
+  <!-- <link rel="stylesheet" href="UserWin.css" />
+  <link rel="stylesheet" href="UserLoss.css" />
+  <link rel="stylesheet" href="Tie.css" /> -->
+
+</head>
+
+<body>
+  <section class="title-score">
+    <div class="all">
+    <div class="title">
+      <h2>ROCK</h2>
+      <h2>PAPER</h2>
+      <h2>SCISSORS</h2>
+    </div>
+    <div class="score">
+      <div class="com-score">
+        <h2>COMPUTER SCORE</h2>
+        <h1>0</h1>
+      </div>
+
+      <div class="user-score">
+        <h2>&nbsp;YOUR &nbsp; SCORE</h2>
+        <h1>0</h1>
+      </div>
+    </div>
+  </div>
+  
+  </section>
+  <section class="game">
+    <a href="" class="choice-btn" data-num="Rock">
+      <div class="choice rock" >
+        <img src="img/Rock.png" alt=""  height="86px"  width= "119px" >
+      </div>
+    </a>
+    <a class="choice-btn" data-num="Scissors">
+      <div class="choice scissors" >
+        <img src="img/Scissors.png" alt=""  height="86px"  width= "80px">
+      </div>
+    </a>
+    <a class="choice-btn" data-num="Paper">
+      <div class="choice paper" >
+        <img src="img/Paper.png" alt=""  height="115px"  width= "115px">
+      </div>
+    </a>
+  
+  </section>
+
+ 
+  </section>
+  <section class="index-rules">
+    <a class="exit">
+      <h5>X</h5>
+    </a>
+    <div class="rules-details">
+      <h2>Game Rules</h2>
+      <div class="rule">
+        <h5></h5>
+        <p>Rock beats scissors, scissors beat paper, and paper beats rock.</p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          Agree ahead of time whether you’ll count off “rock, paper, scissors,
+          shoot” or just “rock, paper, scissors.”
+        </p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          Use rock, paper, scissors to settle minor decisions or simply play
+          to pass the time
+        </p>
+      </div>
+      <div class="rule">
+        <h5></h5>
+        <p>
+          If both players lay down the same hand, each player lays down
+          another hand
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="index-btn">
+    <button class="rul">RULES</button>
+
+  </div>
+
+  <script >
+
+    const common = document.querySelectorAll('a')
+    let ComInnerText = document.querySelector('.com-score h1')
+    let UserInnerText = document.querySelector('.user-score h1')
+
+    const rulbtn = document.querySelector('.rul');
+    const rules = document.querySelector('.index-rules')
+    const exit = document.querySelector('.exit')
+
+      //localStorage.clear()
+      //localStorage.setItem('userWins', userWins);
+      //localStorage.setItem('computerWins', computerWins);
+    let userWins = localStorage.getItem('userWins') || 0;
+    let computerWins = localStorage.getItem('computerWins') || 0
+
+
+    comArr = ['Rock', 'Paper', 'Scissors']
+
+    
+    common.forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault()
+        const userchoise = this.dataset.num 
+        const com = Math.floor(Math.random() * comArr.length);
+        const comchoise = comArr[com]
+
+        console.log(userchoise)
+        console.log(comchoise)
+        localStorage.setItem("UserChoise", userchoise)
+        localStorage.setItem('ComChoise', comchoise)
+
+
+        if (userchoise === 'Rock' && comchoise === 'Scissors' ||
+          userchoise === 'Scissors' && comchoise === 'Paper' ||
+          userchoise === 'Paper' && comchoise === 'Rock') {
+          window.location.href = 'UserWin.html'
+        }
+        else if (userchoise === 'Rock' && comchoise === 'Paper' ||
+          userchoise === 'Paper' && comchoise === 'Scissors' ||
+          userchoise === 'Scissors' && comchoise === 'Rock') {
+          window.location.href = 'UserLoss.html'
+        }
+        else if (userchoise === 'Rock' && comchoise === 'Rock' ||
+          userchoise === 'Paper' && comchoise === 'Paper' ||
+          userchoise === 'Scissors' && comchoise === 'Scissors') {
+          window.location.href = 'tie.html'
+        }
+      });
+    });
+    function UpdateWin() {
+      ComInnerText.innerHTML = computerWins
+      UserInnerText.innerHTML = userWins
+    }
+    UpdateWin()
+
+    rulbtn.addEventListener('click', function () {
+     rules.style.display= 'block'
+    })
+    exit.addEventListener('click', function () {
+      rules.style.display='none'
+    })
+  </script>
+</body>
+
+</html>
