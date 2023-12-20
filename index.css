@@ -328,6 +328,7 @@ section{
     place-items: center;
     stroke-width: 16px;
     filter: drop-shadow(-1px 1px 11px rgba(0, 0, 0, 0.35));
+    /* opacity: 0; */
     
 }
 
@@ -384,13 +385,18 @@ section{
 
 
 /* USER LOSS PAGE STYLE START */
-
+.ring{
+    animation: ripple 1s ease-out infinite;
+    
+}
 .r{
     width: 370px;
     height: 370px;
     border-radius: 350px;
     background: rgba(46, 154, 37, 0.39);
     box-shadow: 0px 1px 62px 0px rgba(0, 0, 0, 0.13);
+    animation-delay: 0s;
+   
 }
 .rr{
     width: 320px;
@@ -401,6 +407,7 @@ section{
     margin-left: 25px;
     margin-top: 24px;
     position: absolute;
+    animation-delay: 0.2s;
 }
 .rr h2{
     position: absolute;
@@ -421,6 +428,7 @@ section{
     margin-left: 25px;
     position: absolute;
     margin-top: 24px;
+    animation-delay: 0.4s;
     
 }
 
@@ -621,4 +629,22 @@ button{
     cursor: pointer;
 }
 /* HURRAY PAGE STYLE START*/
+@keyframes ripple{
+0% {
+    opacity: 1;
+}
 
+25% {
+    opacity: 0.8;
+}
+50% {
+    opacity: 0.5;
+}
+75% {
+    opacity: 0.8;
+}
+100% {
+    opacity: 1;
+
+}
+}
