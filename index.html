@@ -121,18 +121,18 @@
         
         localStorage.setItem("UserChoise", userchoise)
         localStorage.setItem('ComChoise', comchoise)
-
-
+      
+        // User win situation 
         if (userchoise === 'Rock' && comchoise === 'Scissors' ||
           userchoise === 'Scissors' && comchoise === 'Paper' ||
           userchoise === 'Paper' && comchoise === 'Rock') {
           window.location.href = 'UserWin.html'
-        }
+        } //Computer win situation 
         else if (userchoise === 'Rock' && comchoise === 'Paper' ||
           userchoise === 'Paper' && comchoise === 'Scissors' ||
           userchoise === 'Scissors' && comchoise === 'Rock') {
           window.location.href = 'UserLoss.html'
-        }
+        } // Tie situation 
         else if (userchoise === 'Rock' && comchoise === 'Rock' ||
           userchoise === 'Paper' && comchoise === 'Paper' ||
           userchoise === 'Scissors' && comchoise === 'Scissors') {
